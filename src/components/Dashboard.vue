@@ -7,12 +7,12 @@
       Hello,
       <span id="heading-name">{{ givenName }}</span>!
     </h1>
-    <button @click="write">write</button>>
+    <!-- <button @click="write">write</button>> -->
     <p class="lead">
       <a href="#" class="btn btn-primary btn-lg" id="signout-button" @click.prevent="signOut">Logout</a>
     </p>
 
-    <button @click="read">Read Me</button>
+    <!-- <button @click="read">Read Me</button> -->
   </div>
 </template>
 
@@ -22,20 +22,20 @@ export default {
   methods: {
     signOut() {
       userSession.signUserOut(window.location.href);
-    },
-
-    read() {
-      userSession.getFile("/hello.txt", this.options).then(fileContents => {
-        // get the contents of the file /hello.txt
-        assert(fileContents === "hello world!");
-      });
-    },
-    async write() {
-      let options = {
-        encrypt: true
-      };
-      await userSession.putFile("hello.txt", "Hello World", options);
     }
+
+    // read() {
+    //   userSession.getFile("/hello.txt", this.options).then(fileContents => {
+    //     // get the contents of the file /hello.txt
+    //     console.log(fileContents);
+    //   });
+    // },
+    // async write() {
+    //   let options = {
+    //     encrypt: true
+    //   };
+    //   await userSession.putFile("/hello.txt", "Hello World", options);
+    // }
   },
   data() {
     return {
