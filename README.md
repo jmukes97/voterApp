@@ -1,4 +1,4 @@
-# voterApp
+# Postit vote
 Voting system replacement, based on blockchain 
 
 # Git Instructions
