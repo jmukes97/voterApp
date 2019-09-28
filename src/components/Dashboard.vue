@@ -12,7 +12,7 @@
       <a href="#" class="btn btn-primary btn-lg" id="signout-button" @click.prevent="signOut">Logout</a>
     </p>
 
-    <button @click="read">Read Me</button>
+    <!-- <button @click="read">Read Me</button> -->
   </div>
 </template>
 
@@ -37,7 +37,22 @@ export default {
       userSession.putFile('hello.txt', 'Hello World', options).then(() => {
         console.log('Done')
       })
+    signOut() {
+      userSession.signUserOut(window.location.href);
     }
+
+    // read() {
+    //   userSession.getFile("/hello.txt", this.options).then(fileContents => {
+    //     // get the contents of the file /hello.txt
+    //     console.log(fileContents);
+    //   });
+    // },
+    // async write() {
+    //   let options = {
+    //     encrypt: true
+    //   };
+    //   await userSession.putFile("/hello.txt", "Hello World", options);
+    // }
   },
   data () {
     return {
