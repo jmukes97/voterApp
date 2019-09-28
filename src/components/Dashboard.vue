@@ -17,26 +17,26 @@
 </template>
 
 <script>
-import { userSession } from "../userSession";
+import { userSession } from '../userSession'
 export default {
   methods: {
-    signOut() {
-      userSession.signUserOut(window.location.href);
+    signOut () {
+      userSession.signUserOut(window.location.href)
     },
 
-    read() {
-      userSession.getFile("hello.txt", this.options).then(fileContents => {
+    read () {
+      userSession.getFile('hello.txt', this.options).then(fileContents => {
         // get the contents of the file /hello.txt
-        console.log(fileContents);
-      });
+        console.log(fileContents)
+      })
     },
-    write() {
+    write () {
       let options = {
         encrypt: true
-      };
-      userSession.putFile("hello.txt", "Hello World", options).then(() => {
-        console.log("Done");
-      });
+      }
+      userSession.putFile('hello.txt', 'Hello World', options).then(() => {
+        console.log('Done')
+      })
     }
     // read() {
     //   userSession.getFile("/hello.txt", this.options).then(fileContents => {
@@ -51,28 +51,28 @@ export default {
     //   await userSession.putFile("/hello.txt", "Hello World", options);
     // }
   },
-  data() {
+  data () {
     return {
       blockstack: window.blockstack,
-      avatar: "https://s3.amazonaws.com/onename/avatar-placeholder.png",
-      givenName: "Anonymous",
+      avatar: 'https://s3.amazonaws.com/onename/avatar-placeholder.png',
+      givenName: 'Anonymous',
       options: { decrypt: true }
-    };
+    }
   },
-  mounted() {
-    const blockstack = this.blockstack;
+  mounted () {
+    const blockstack = this.blockstack
     if (blockstack.isUserSignedIn()) {
-      const profile = blockstack.loadUserData().profile;
-      const user = new blockstack.Person(profile);
-      this.givenName = user.name() ? user.name() : "Nameless Person";
-      if (user.avatarUrl()) this.avatar = user.avatarUrl();
+      const profile = blockstack.loadUserData().profile
+      const user = new blockstack.Person(profile)
+      this.givenName = user.name() ? user.name() : 'Nameless Person'
+      if (user.avatarUrl()) this.avatar = user.avatarUrl()
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn().then(userData => {
-        window.location = window.location.origin;
-      });
+        window.location = window.location.origin
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped></style>
