@@ -7,6 +7,7 @@
       Hello,
       <span id="heading-name">{{ givenName }}</span>!
     </h1>
+    <button @click="write">write</button>>
     <p class="lead">
       <a href="#" class="btn btn-primary btn-lg" id="signout-button" @click.prevent="signOut">Logout</a>
     </p>
@@ -24,10 +25,16 @@ export default {
     },
 
     read() {
-      userSession.getFile("/hello.txt", options).then(fileContents => {
+      userSession.getFile("/hello.txt", this.options).then(fileContents => {
         // get the contents of the file /hello.txt
         assert(fileContents === "hello world!");
       });
+    },
+    async write() {
+      let options = {
+        encrypt: true
+      };
+      await userSession.putFile("hello.txt", "Hello World", options);
     }
   },
   data() {
