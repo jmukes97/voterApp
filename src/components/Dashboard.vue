@@ -4,6 +4,7 @@
       <img :src="avatar" class="img-rounded avatar" id="avatar-image">
     </div>
     <h1 class="landing-heading">Hello, <span id="heading-name">{{ givenName }}</span>!</h1>
+    <button @click="write">write</button>>
     <p class="lead">
       <a
         href="#"
@@ -23,6 +24,12 @@ export default {
   methods: {
     signOut () {
       userSession.signUserOut(window.location.href)
+    },
+    async write () {
+      let options = {
+        encrypt: true
+      }
+      await userSession.putFile('hello.txt', 'Hello World', options)
     }
   },
   data () {
