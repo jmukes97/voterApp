@@ -1,19 +1,18 @@
 <template>
   <div class="panel-welcome" id="section-2">
     <div class="avatar-section">
-      <img :src="avatar" class="img-rounded avatar" id="avatar-image">
+      <img :src="avatar" class="img-rounded avatar" id="avatar-image" />
     </div>
-    <h1 class="landing-heading">Hello, <span id="heading-name">{{ givenName }}</span>!</h1>
+    <h1 class="landing-heading">
+      Hello,
+      <span id="heading-name">{{ givenName }}</span>!
+    </h1>
+    <button @click="write">write</button>
     <p class="lead">
-      <a
-        href="#"
-        class="btn btn-primary btn-lg"
-        id="signout-button"
-        @click.prevent="signOut"
-      >
-        Logout
-      </a>
+      <a href="#" class="btn btn-primary btn-lg" id="signout-button" @click.prevent="signOut">Logout</a>
     </p>
+
+    <!-- <button @click="read">Read Me</button> -->
   </div>
 </template>
 
@@ -23,13 +22,44 @@ export default {
   methods: {
     signOut () {
       userSession.signUserOut(window.location.href)
+    },
+
+    read () {
+      userSession.getFile('hello.txt', this.options).then(fileContents => {
+        // get the contents of the file /hello.txt
+        console.log(fileContents)
+      })
+    },
+    write () {
+      let options = {
+        encrypt: true
+      }
+      userSession.putFile('hello.txt', 'Hello World', options).then(() => {
+        console.log('Done')
+      })
+    signOut() {
+      userSession.signUserOut(window.location.href);
     }
+
+    // read() {
+    //   userSession.getFile("/hello.txt", this.options).then(fileContents => {
+    //     // get the contents of the file /hello.txt
+    //     console.log(fileContents);
+    //   });
+    // },
+    // async write() {
+    //   let options = {
+    //     encrypt: true
+    //   };
+    //   await userSession.putFile("/hello.txt", "Hello World", options);
+    // }
   },
   data () {
     return {
       blockstack: window.blockstack,
       avatar: 'https://s3.amazonaws.com/onename/avatar-placeholder.png',
-      givenName: 'Anonymous'
+      givenName: 'Anonymous',
+      options: { decrypt: true }
     }
   },
   mounted () {
@@ -40,10 +70,9 @@ export default {
       this.givenName = user.name() ? user.name() : 'Nameless Person'
       if (user.avatarUrl()) this.avatar = user.avatarUrl()
     } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn()
-        .then((userData) => {
-          window.location = window.location.origin
-        })
+      blockstack.handlePendingSignIn().then(userData => {
+        window.location = window.location.origin
+      })
     }
   }
 }
