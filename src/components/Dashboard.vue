@@ -1,4 +1,5 @@
 <template>
+  <div class="background">
   <md-app md-mode="reveal">
     <md-app-toolbar class="md-primary">
       <div>
@@ -74,6 +75,7 @@
       </div>
     </md-app-content>
   </md-app>
+  </div>
 </template>
 
 <style lang="scss" scoped>
