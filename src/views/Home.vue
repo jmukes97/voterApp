@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <landing v-if="! userSession.isUserSignedIn()"></landing>
     <dashboard v-if="user" :user="user"></dashboard>
 
@@ -11,6 +11,7 @@ import Landing from '@/components/Landing.vue'
 import Dashboard from '@/components/Dashboard.vue'
 import { Person } from 'blockstack'
 import { userSession } from '../userSession'
+import Canidate from '@/components/Election.vue'
 
 export default {
   name: 'Home',

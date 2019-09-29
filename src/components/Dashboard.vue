@@ -1,55 +1,51 @@
 <template>
-<<<<<<< HEAD
-<div class="page-container">
-  <md-app md-mode="reveal">
-    <md-app-toolbar class="md-primary">
-      <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-        <md-icon>menu</md-icon>
-      </md-button>
-      <span class="md-title">My Title</span>
-    </md-app-toolbar>
-=======
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <i class="fas fa-bars"></i>
-        </md-button>
-        <span class="md-title">Post-it Vote</span>
+        <div>
+          <img src="../assets/bars-solid.svg" height="20%" width="20%" @click="showNavigation = true">
+        </div>
+
+        <span class="md-title" style="text-align:center;"></span>
       </md-app-toolbar>
->>>>>>> 946ced3546db7ccde5e8b14e79d10b0461ff16aa
 
-    <md-app-drawer :md-active.sync="menuVisible">
-      <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+    <md-app-drawer :md-active.sync="showNavigation">
+      <md-toolbar class="md-transparent" md-elevation="0">
 
+      <md-avatar style="width:50%; height:auto; border-radius:50%; margin-top:10px;">
+          <img src="https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif">
+        </md-avatar>
+      </md-toolbar>
       <md-list>
         <md-list-item>
 
-          <span class="md-list-item-text">Inbox</span>
+          <span class="md-list-item-text">[Name]</span>
         </md-list-item>
 
         <md-list-item>
-          <span class="md-list-item-text">Sent Mail</span>
+          <span class="md-list-item-text">[Email]</span>
         </md-list-item>
 
         <md-list-item>
-          <span class="md-list-item-text">Trash</span>
+          <span class="md-list-item-text">[Eligable to vote]</span>
         </md-list-item>
 
         <md-list-item>
-          <md-icon>error</md-icon>
+          <img src="../assets/edit-regular.svg" height="20%" width="20%" style="margin-right:5%;">
           <span class="md-list-item-text">Edit Profile</span>
         </md-list-item>
-      </md-list>
       <md-list-item>
-        <md-icon>error</md-icon>
+        <img src="../assets/sign-out-alt-solid.svg" height="20%" width="20%" style="margin-right:5%;">
         <span class="md-list-item-text">Logout</span>
       </md-list-item>
-      </md-list>    </md-app-drawer>
+      </md-list>    
+      </md-app-drawer>
     <md-app-content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo, neque.</p>
+      <div style="width:60%; margin-left:20%">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut volutpat velit, at porta turpis. Nullam vel facilisis erat. Cras fringilla risus erat, at fermentum ante accumsan eu. Maecenas massa dui, tincidunt a risus ac, interdum tincidunt ligula. Quisque ullamcorper dapibus tortor et suscipit. Nulla dictum nibh ut dapibus malesuada. Nam pulvinar mi id scelerisque hendrerit. Nullam ornare leo turpis. Curabitur venenatis rutrum nulla, quis accumsan purus rutrum aliquam. In non sem quis odio fermentum varius. Aliquam hendrerit tortor eu quam tempor interdum. Donec tincidunt vehicula dapibus.</p>
+        <Election></Election>
+      </div>      
     </md-app-content>
   </md-app>
-</div>
 </template>
 
 <style lang="scss" scoped>
@@ -63,13 +59,17 @@
     width: 230px;
     max-width: calc(100vw - 125px);
   }
+
+  .md-list-item-text {
+    text-align: center;
+  }
 </style>
 
 <script>
 export default {
   name: 'Reveal',
   data: () => ({
-    menuVisible: false
+    showNavigation: false
   })
 }
 </script>
