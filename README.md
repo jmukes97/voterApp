@@ -1,4 +1,5 @@
 # Post-it vote
+Votung that sticks.
 Voting system replacement, based on blockchain 
 
 # Git Instructions
