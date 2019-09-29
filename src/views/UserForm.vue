@@ -14,7 +14,7 @@
         <b-col>
 
           <md-field>
-            <md-select v-model="form.state" name="State" id="State" placeholder="State">
+            <md-select v-model="form.state_id" name="State" id="State" placeholder="State">
               <md-option value="AL">AL</md-option>
               <md-option value="AK">AK</md-option>
               <md-option value="AZ">AZ</md-option>
@@ -156,6 +156,8 @@ export default {
 
       let keys = Object.keys(this.form)
       for(let i = 0; i < keys.length; i++){
+        console.log(this.form[keys[i]])
+        console.log([keys[i]])
         if(this.form[keys[i]] == ""){
           this.form.canVote = 0
         }
