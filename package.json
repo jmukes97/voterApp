@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "ajv": "^6.10.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "blockstack": "^19.2.5",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.2",
