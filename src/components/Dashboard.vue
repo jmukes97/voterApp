@@ -29,10 +29,10 @@
           <span class="md-list-item-text">[Eligable to vote]</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item><a href="./userForm" style="text-decoration: none;">
           <img src="../assets/edit-regular.svg" height="20%" width="20%" style="margin-right:5%;" />
           <span class="md-list-item-text">Edit Profile</span>
-        </md-list-item>
+        </a></md-list-item>
         <md-list-item>
           <img
             src="../assets/sign-out-alt-solid.svg"
