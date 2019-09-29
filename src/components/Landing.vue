@@ -1,6 +1,9 @@
 <template>
-  <div class="panel-landing" id="section-1">
-    <h1 class="landing-heading">Hello, Blockstack!</h1>
+  <div class="panel-landing" id="section-1" >
+    <!--<div class="img-banner" :style="{'background-image': 'url(' + require('../assets/usFlag.jpg') + ')'}">test</div> -->
+    <h1 class="landing-heading"<h1>Post-It Vote</h1>
+    <h5><i>Voting that sticks</i></h5>
+    <br>
     <p class="lead">
       <a
         href="#"
@@ -8,7 +11,7 @@
         id="signin-button"
         @click.prevent="signIn"
       >
-        Sign In with Blockstack
+        Login
       </a>
     </p>
   </div>
@@ -25,5 +28,19 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>
+<style scoped>
+  #section-1{
+    float:right;
+    padding-top: 30vh;
+    font-size: small;
+    padding-right:5vh;
+    background-image: '';
+  }
+  #signin-button {
+    width: 100%;
+  }
+body{
+  background-image:url(https://imgur.com/ZKYENSj);
+  background-size:cover;
+}
+</style>
