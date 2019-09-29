@@ -48,8 +48,8 @@
 
           <md-field>
             <label>Date of Birth</label>
-            <md-input v-model="form.DOB" />
-          </md-field>
+              <md-datepicker v-model="form.DOB" />
+            </md-field>
         </b-col>
         </b-row>
         <b-row>
