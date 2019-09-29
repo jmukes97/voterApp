@@ -2,7 +2,7 @@
 const mongoClient = require('mongodb').MongoClient;
 
 // URL the database is hosted
-const mongoUrl = "mongodb://localhost:27017/mydb";
+const mongoUrl = "mongodb+srv://postitvote:postitvote123456@cluster0-thmot.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
 // Name of the database
 const dbName = "testDB";
