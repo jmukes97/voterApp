@@ -80,3 +80,26 @@ exports.getCollectionData = async function (collectionName) {
 
     return collection;
 }
+
+// Update Collection Data
+exports.updateCollectionData = function (collectionName, query, newData) {
+    mongoClient.connect(mongoUrl, function (error, client) {
+        if (error) {
+            console.log("Failed to connected to DB");
+            throw error;
+        }
+
+        console.log("Connected to the database");
+
+        let dbObject = client.db(dbName);
+
+        dbObject.collection(collectionName).updateOne(query, newData, function (error, result) {
+            if (error) {
+                console.log("Failed to update data in the '" + collectionName + "' collection");
+                throw error;
+            }
+
+            console.log("Succesfully updated the '" + collectionName + "' collection");
+        });
+    });
+}

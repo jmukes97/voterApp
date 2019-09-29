@@ -118,22 +118,26 @@ export default {
         {
           name: "David",
           party: "Green Party",
-          totalVotes: 1
+          totalVotes: 1,
+          election: "Election3"
         },
         {
           name: "Sandy",
           party: "Republican",
-          totalVotes: 1
+          totalVotes: 1,
+          election: "Election3"
         },
         {
           name: "Robert",
           party: "Democrat",
-          totalVotes: 1
+          totalVotes: 1,
+          election: "Election3"
         },
         {
           name: "Nathan",
           party: "Tree Hugging Pacifist",
-          totalVotes: 1
+          totalVotes: 1,
+          election: "Election3"
         }
       ]
     };
