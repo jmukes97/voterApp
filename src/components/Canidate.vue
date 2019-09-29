@@ -9,7 +9,7 @@
             <div class="md-subhead" >[Platform]</div>
             </b-col>
             <b-col>
-            <md-button class="md-raised md-accent" style="float:right;">Vote</md-button>
+            <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
             </b-col>
           </b-row>
         </md-card-header>

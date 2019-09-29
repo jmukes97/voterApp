@@ -12,62 +12,7 @@
         <div class="md-title" style="margin-bottom:10px;">Edit your profile</div>
         <b-row>
         <b-col>
-
-          <md-field>
-            <md-select v-model="form.state" name="State" id="State" placeholder="State">
-              <md-option value="AL">AL</md-option>
-              <md-option value="AK">AK</md-option>
-              <md-option value="AZ">AZ</md-option>
-              <md-option value="AR">AR</md-option>
-              <md-option value="CA">CA</md-option>
-              <md-option value="CO">CO</md-option>
-              <md-option value="CT">CT</md-option>
-              <md-option value="DC">DC</md-option>
-              <md-option value="DE">DE</md-option>
-              <md-option value="FL">FL</md-option>
-              <md-option value="GA">GA</md-option>
-              <md-option value="HI">HI</md-option>
-              <md-option value="ID">ID</md-option>
-              <md-option value="IL">IL</md-option>
-              <md-option value="IN">IN</md-option>
-              <md-option value="IA">IA</md-option>
-              <md-option value="KS">KS</md-option>
-              <md-option value="KY">KY</md-option>
-              <md-option value="LA">LA</md-option>
-              <md-option value="ME">ME</md-option>
-              <md-option value="MD">MD</md-option>
-              <md-option value="MA">MA</md-option>
-              <md-option value="MI">MI</md-option>
-              <md-option value="MN">MN</md-option>
-              <md-option value="MS">MS</md-option>
-              <md-option value="MO">MO</md-option>
-              <md-option value="MT">MT</md-option>
-              <md-option value="NE">NE</md-option>
-              <md-option value="NV">NV</md-option>
-              <md-option value="NH">NH</md-option>
-              <md-option value="NJ">NJ</md-option>
-              <md-option value="NM">NM</md-option>
-              <md-option value="NY">NY</md-option>
-              <md-option value="NC">NC</md-option>
-              <md-option value="ND">ND</md-option>
-              <md-option value="OH">OH</md-option>
-              <md-option value="OK">OK</md-option>
-              <md-option value="OR">OR</md-option>
-              <md-option value="PA">PA</md-option>
-              <md-option value="RI">RI</md-option>
-              <md-option value="SC">SC</md-option>
-              <md-option value="SD">SD</md-option>
-              <md-option value="TN">TN</md-option>
-              <md-option value="TX">TX</md-option>
-              <md-option value="UT">UT</md-option>
-              <md-option value="VT">VT</md-option>
-              <md-option value="VA">VA</md-option>
-              <md-option value="WA">WA</md-option>
-              <md-option value="WV">WV</md-option>
-              <md-option value="WI">WI</md-option>
-              <md-option value="WY">WY</md-option>
-            </md-select>
-          </md-field>
+          <md-autocomplete v-model="form.state" :md-options="States"><label>State</label></md-autocomplete>
           <md-field>
             <label>City</label>
             <md-input v-model="form.city"></md-input>
@@ -79,8 +24,8 @@
         </b-col>
         <b-col>
           <md-field>
-            <label>Profile Picture</label>
-            <md-file v-model="form.pic" />
+            <label>State ID</label>
+            <md-input v-model="form.id" />
           </md-field>
           <md-field>
             <label>First Name</label>
@@ -168,6 +113,8 @@ export default {
     return {
       userSession: null,
       user: null,
+      // state: null,
+      States: [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ],
       form: {
         state_id: null,
         fname: '',
