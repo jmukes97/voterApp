@@ -4,17 +4,17 @@
     <b-row>
       <b-col cols="4">
         <md-avatar class="center" style="width:50%; height:auto; border-radius:50%;">
-          <img src="https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif">
+          <img :src=form.pic>
         </md-avatar>
       </b-col>
-      
+
       <b-col cols="8">
         <div class="md-title" style="margin-bottom:10px;">Edit your profile</div>
         <b-row>
         <b-col>
-          
+
           <md-field>
-            <md-select v-model="State" name="State" id="State" placeholder="State">
+            <md-select v-model="form.state" name="State" id="State" placeholder="State">
               <md-option value="AL">AL</md-option>
               <md-option value="AK">AK</md-option>
               <md-option value="AZ">AZ</md-option>
@@ -70,52 +70,52 @@
           </md-field>
           <md-field>
             <label>City</label>
-            <md-input v-model="type"></md-input>
+            <md-input v-model="form.city"></md-input>
           </md-field>
           <md-field>
             <label>Address</label>
-            <md-input v-model="type"></md-input>
+            <md-input v-model="form.line1"></md-input>
           </md-field>
         </b-col>
         <b-col>
           <md-field>
             <label>Profile Picture</label>
-            <md-file v-model="single" />
+            <md-file v-model="form.pic" />
           </md-field>
           <md-field>
             <label>First Name</label>
-            <md-input v-model="type" />
+            <md-input v-model="form.fname" />
           </md-field>
           <md-field>
             <label>Last Name</label>
-            <md-input v-model="type" />
+            <md-input v-model="form.lname" />
           </md-field>
         </b-col>
         <b-col>
           <md-field>
             <label>Email</label>
-            <md-input v-model="type" />
+            <md-input v-model="form.email" />
           </md-field>
           <md-field>
             <label>Phone Number</label>
-            <md-input v-model="type" />
+            <md-input v-model="form.phone_num" />
           </md-field>
           <md-field>
             <label>Date of Birth</label>
-            <md-input v-model="type" />
+            <md-input v-model="form.DOB" />
           </md-field>
         </b-col>
         </b-row>
         <b-row>
           <b-col>
-            <md-button class="md-raised md-primary horCenter" style="margin-left:25%;">Save</md-button>
+            <md-button @click="submit" class="md-raised md-primary horCenter" style="margin-left:25%;">Save</md-button>
           </b-col>
           <b-col>
             <md-button class="md-raised md-primary horCenter" style="background-color:#36318F; margin-left:25%;">Cancel</md-button>
           </b-col>
         </b-row>
       </b-col>
-      
+
     </b-row>
 
   </b-container>
@@ -128,10 +128,10 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-//import { Person } from 'blockstack'
-//import { userSession } from '../userSession'
+import { Person } from 'blockstack'
+import { userSession } from '../userSession'
 import BootstrapVue from 'bootstrap-vue'
-
+import router from '../router'
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 
@@ -141,11 +141,44 @@ export default {
   /* created () {
     this.userSession = userSession
   }, */
-  mounted () {},
+  mounted () {
+    if (!userSession.isUserSignedIn()) {
+      router.push('/')
+    }else {
+        this.userData = userSession.loadUserData()
+        this.user = new Person(this.userData.profile)
+
+      }
+  },
+  methods: {
+    submit(){
+      let options = {
+        encrypt: true
+      };
+      userSession.putFile("user.json", JSON.stringify(this.form), options).then(() => {
+        router.push('/')
+      });
+    },
+    cancel () {
+      router.push('/')
+    }
+  },
   data () {
     return {
       userSession: null,
-      user: null
+      user: null,
+      form: {
+        state_id: null,
+        fname: '',
+        lname: '',
+        email: '',
+        city: '',
+        state: '',
+        line1: '',
+        phone_num: '',
+        DOB: '',
+        pic: 'https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif'
+      }
     }
   }
 }
