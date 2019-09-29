@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 <div class="page-container">
   <md-app md-mode="reveal">
     <md-app-toolbar class="md-primary">
@@ -8,15 +7,12 @@
       </md-button>
       <span class="md-title">My Title</span>
     </md-app-toolbar>
-=======
-    <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <i class="fas fa-bars"></i>
         </md-button>
         <span class="md-title">Post-it Vote</span>
       </md-app-toolbar>
->>>>>>> 946ced3546db7ccde5e8b14e79d10b0461ff16aa
 
     <md-app-drawer :md-active.sync="menuVisible">
       <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>

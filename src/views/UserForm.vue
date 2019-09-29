@@ -100,6 +100,7 @@
             <label>Phone Number</label>
             <md-input v-model="form.phone_num" />
           </md-field>
+
           <md-field>
             <label>Date of Birth</label>
             <md-input v-model="form.DOB" />
