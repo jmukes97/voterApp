@@ -1,28 +1,37 @@
 // Import the functions from the DBQuery Library
 const db = require('../helpers/DBQuery');
 
-// Elections
-// Candidates: belong to an election
-// Office: Elections have an office
-// Candidates have a specific number of votes;
-
+// Stores the election data into MongoDB Atlas
 exports.storeElectionData = async function (request, response) {
-    // db.createCollection("testElection");
+  db.createCollection("Election1");
+  db.createCollection("Election2");
+  db.createCollection("Election3");
 
-    // db.addObjectToCollection("testElection", { "election1": { "name": "Jon", "party": "Democrat" } });
-    // db.addObjectToCollection("testElection", { "election1": { "name": "Joe", "party": "Green Party" } });
-    // db.addObjectToCollection("testElection", { "election1": { "name": "Nessa", "party": "Republican" } });
-    // db.addObjectToCollection("testElection", { "election1": { "name": "Margret", "party": "Democrat" } });
+  let collection = await db.getCollectionData("Election1", { "name": "Joe" });
 
-    // db.addObjectToCollection("testElection", { "election2": { "name": "Jasmine", "party": "Republican" } });
-    // db.addObjectToCollection("testElection", { "election2": { "name": "Althea", "party": "Democrat" } });
-    // db.addObjectToCollection("testElection", { "election2": { "name": "Gabriel", "party": "Green Party" } });
+  if (collection[0]['name'] === "Joe") {
+    let updatedTotal = collection[0]['totalVotes'] + 1;
+    db.updateCollectionData("Election1", { "name": collection[0]['name'] }, { $set: { "totalVotes": updatedTotal } })
+  }
 
-    // db.addObjectToCollection("testElection", { "election3": { "name": "David", "party": "Green Party" } });
-    // db.addObjectToCollection("testElection", { "election3": { "name": "Sandy", "party": "Republican" } });
-    // db.addObjectToCollection("testElection", { "election3": { "name": "Robert", "party": "Democrat" } });
-    // db.addObjectToCollection("testElection", { "election3": { "name": "Nathan", "party": "Tree Hugging Pacifist" } });
+  // db.addObjectToCollection("Election1", { "name": "Jon", "party": "Democrat", "totalVotes": 1 });
+  // db.addObjectToCollection("Election1", { "name": "Joe", "party": "Green Party", "totalVotes": 1 });
+  // db.addObjectToCollection("Election1", { "name": "Nessa", "party": "Republican", "totalVotes": 1 });
+  // db.addObjectToCollection("Election1", { "name": "Margret", "party": "Democrat", "totalVotes": 1 });
 
-    // let collection = await db.getCollectionData("testElection");
-    // console.log(collection[0]);
+  // db.addObjectToCollection("Election2", { "name": "Jasmine", "party": "Republican", "totalVotes": 1 });
+  // db.addObjectToCollection("Election2", { "name": "Althea", "party": "Democrat", "totalVotes": 1 });
+  // db.addObjectToCollection("Election2", { "name": "Gabriel", "party": "Green Party", "totalVotes": 1 });
+
+  // db.addObjectToCollection("Election3", { "name": "David", "party": "Green Party", "totalVotes": 1 });
+  // db.addObjectToCollection("Election3", { "name": "Sandy", "party": "Republican", "totalVotes": 1 });
+  // db.addObjectToCollection("Election3", { "name": "Robert", "party": "Democrat", "totalVotes": 1 });
+  // db.addObjectToCollection("Election3", { "name": "Nathan", "party": "Tree Hugging Pacifist", "totalVotes": 1 });
+
+  // let collection = await db.getCollectionData("Election1");
+
+  collection = await db.getCollectionData("Election2");
+
+  console.log(collection);
+  return response.send(collection)
 }
