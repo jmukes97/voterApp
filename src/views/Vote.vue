@@ -1,6 +1,6 @@
 <template>
 <div>
-  <canidate></canidate>
+  <Canidate></Canidate>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ Vue.use(VueMaterial)
 
 export default {
   name: 'Vote',
-  components: { Vue, VueMaterial },
+  components: { Vue, VueMaterial, Canidate },
 created () {
     this.userSession = userSession
   },
