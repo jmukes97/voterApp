@@ -2,12 +2,13 @@
   <b-container>
     <b-row>
       <b-col cols="4">
-        <md-avatar class="center">
-          <img height="500px" src="https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif">
+        <md-avatar class="center" style="width:50%; height:auto; border-radius:50%;">
+          <img src="https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif">
         </md-avatar>
       </b-col>
       
-      <b-col>
+      <b-col cols="8">
+        <b-row>
         <b-col>
           <md-field>
             <md-select v-model="State" name="State" id="State" placeholder="State">
@@ -87,7 +88,7 @@
             <md-input v-model="type" />
           </md-field>
         </b-col>
-        <b-col style="display: ">
+        <b-col>
           <md-field>
             <label>Email</label>
             <md-input v-model="type" />
@@ -101,12 +102,19 @@
             <md-input v-model="type" />
           </md-field>
         </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <md-button class="md-raised md-primary horCenter" style="margin-left:25%;">Save</md-button>
+          </b-col>
+          <b-col>
+            <md-button class="md-raised md-primary horCenter" style="background-color:#36318F; margin-left:25%;">Cancel</md-button>
+          </b-col>
+        </b-row>
       </b-col>
       
     </b-row>
-    <b-row>
-      
-    </b-row>
+
   </b-container>
 
 </template>
@@ -146,16 +154,15 @@ export default {
         margin-right: 10%;
     }
 
-    div {
-      border: solid .5px;
-      border-color: crimson;
-    }
-
     .center {
-      margin: 0;
+      margin-left: 12.5%;
       position: absolute;
       top: 50%;
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
+    }
+
+    .horCenter {
+      margin-left: calc(25% - 44px);
     }
 </style>
