@@ -1,40 +1,41 @@
 <template>
-  <div >
+  <div>
     <landing v-if="! userSession.isUserSignedIn()"></landing>
-    <dashboard v-if="user" :user="user"></dashboard>
-
+    <div v-if="user" :user="user">
+      <dashboard></dashboard>
+      <Election></Election>
+    </div>
   </div>
 </template>
 
 <script>
-import Landing from '@/components/Landing.vue'
-import Dashboard from '@/components/Dashboard.vue'
-import { Person } from 'blockstack'
-import { userSession } from '../userSession'
+import Landing from "@/components/Landing.vue";
+import Dashboard from "@/components/Dashboard.vue";
+import { Person } from "blockstack";
+import { userSession } from "../userSession";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: { Landing, Dashboard },
-  created () {
-    this.userSession = userSession
+  created() {
+    this.userSession = userSession;
   },
-  mounted () {
-    if (userSession.isUserSignedIn()) {
-      this.userData = userSession.loadUserData()
-      this.user = new Person(this.userData.profile)
-      this.user.username = this.userData.username
-    } else if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn()
-        .then((userData) => {
-          window.location = window.location.origin
-        })
-    }
-  },
-  data () {
+  data() {
     return {
       userSession: null,
       user: null
+    };
+  },
+  mounted() {
+    if (userSession.isUserSignedIn()) {
+      this.userData = userSession.loadUserData();
+      this.user = new Person(this.userData.profile);
+      this.user.username = this.userData.username;
+    } else if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(userData => {
+        window.location = window.location.origin;
+      });
     }
   }
-}
+};
 </script>

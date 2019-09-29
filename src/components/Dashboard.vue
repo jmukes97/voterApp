@@ -1,64 +1,131 @@
 <template>
-    <md-app md-mode="reveal">
-      <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <i class="fas fa-bars"></i>
-        </md-button>
-        <span class="md-title">Post-it Vote</span>
-      </md-app-toolbar>
+  <md-app md-mode="reveal">
+    <md-app-toolbar class="md-primary">
+      <div>
+        <img src="../assets/bars-solid.svg" height="20%" width="20%" @click="showNavigation = true" />
+      </div>
+      <span class="md-title" style="text-align:center;"></span>
+    </md-app-toolbar>
 
-    <md-app-drawer :md-active.sync="menuVisible">
-      <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
-
+    <md-app-drawer :md-active.sync="showNavigation">
+      <md-toolbar class="md-transparent" md-elevation="0">
+        <md-avatar style="width:50%; height:auto; border-radius:50%; margin-top:10px;">
+          <img
+            src="https://gladstoneentertainment.com/wp-content/uploads/2018/05/avatar-placeholder.gif"
+          />
+        </md-avatar>
+      </md-toolbar>
       <md-list>
         <md-list-item>
-
-          <span class="md-list-item-text">Inbox</span>
+          <span class="md-list-item-text">[Name]</span>
         </md-list-item>
 
         <md-list-item>
-          <span class="md-list-item-text">Sent Mail</span>
+          <span class="md-list-item-text">[Email]</span>
         </md-list-item>
 
         <md-list-item>
-          <span class="md-list-item-text">Trash</span>
+          <span class="md-list-item-text">[Eligable to vote]</span>
         </md-list-item>
 
         <md-list-item>
-          <md-icon>error</md-icon>
+          <img src="../assets/edit-regular.svg" height="20%" width="20%" style="margin-right:5%;" />
           <span class="md-list-item-text">Edit Profile</span>
         </md-list-item>
+        <md-list-item>
+          <img
+            src="../assets/sign-out-alt-solid.svg"
+            height="20%"
+            width="20%"
+            style="margin-right:5%;"
+          />
+          <span class="md-list-item-text">Logout</span>
+        </md-list-item>
       </md-list>
-      <md-list-item>
-        <md-icon>error</md-icon>
-        <span class="md-list-item-text">Logout</span>
-      </md-list-item>
-      </md-list>    </md-app-drawer>
+    </md-app-drawer>
     <md-app-content>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo, neque.</p>
+      <div style="width:60%; margin-left:20%">
+        <md-card md-with-hover>
+          <md-card-header style="margin-top: 5%">
+            <div class="md-title">Best Backend Dev</div>
+          </md-card-header>
+          <md-card-actions>
+            <md-button class="md-raised md-accent">Vote</md-button>
+          </md-card-actions>
+        </md-card>
+
+        <md-card md-with-hover style="margin-top: 5%">
+          <md-card-header>
+            <div class="md-title">Best Front End Dev</div>
+          </md-card-header>
+          <md-card-actions>
+            <md-button class="md-raised md-accent">Vote</md-button>
+          </md-card-actions>
+        </md-card>
+
+        <md-card md-with-hover style="margin-top: 5%">
+          <md-card-header>
+            <div class="md-title">Best Database Management Dev</div>
+          </md-card-header>
+          <md-card-actions>
+            <md-button class="md-raised md-accent">Vote</md-button>
+          </md-card-actions>
+        </md-card>
+      </div>
     </md-app-content>
   </md-app>
-</div>
 </template>
 
 <style lang="scss" scoped>
-  .md-app {
-    height: 100vh;
-    border: 1px solid rgba(#000, .12);
-  }
+.md-app {
+  height: 100vh;
+  border: 1px solid rgba(#000, 0.12);
+}
 
-  // Demo purposes only
-  .md-drawer {
-    width: 230px;
-    max-width: calc(100vw - 125px);
-  }
+// Demo purposes only
+.md-drawer {
+  width: 230px;
+  max-width: calc(100vw - 125px);
+}
+
+.md-list-item-text {
+  text-align: center;
+}
 </style>
 
 <script>
+import swal from "sweetalert";
+
 export default {
-  name: 'Reveal',
+  name: "Reveal",
+  methods: {
+    profileSetupAlert() {
+      swal({
+        title: "Error Inelegable",
+        text: "Please fill out profile in order to vote",
+        icon: "warning"
+      });
+    }
+  },
   data: () => ({
-    menuVisible: false
-  })
-}
+    showNavigation: false,
+    elections: []
+  }),
+  mounted() {
+    //this.profileSetupAlert()
+    const axios = require("axios");
+
+    // Make a request for a user with a given ID
+    axios
+      .get("http://34.68.131.167:4444/test")
+      .then(response => {
+        this.elections = response.data;
+        console.log(this.elections);
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
+  }
+};
 </script>
