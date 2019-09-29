@@ -54,7 +54,7 @@ exports.addObjectToCollection = async function (collectionName, jsonObject) {
 }
 
 // Returns an array of json objects containing the collection
-exports.getCollectionData = async function (collectionName) {
+exports.getCollectionData = async function (collectionName, query = {}) {
 
     let collection = await new Promise((res, rej) => {
         mongoClient.connect(mongoUrl, function (error, client) {
@@ -67,7 +67,7 @@ exports.getCollectionData = async function (collectionName) {
 
             let dbObject = client.db(dbName);
 
-            dbObject.collection(collectionName).find({}).toArray(function (error, result) {
+            dbObject.collection(collectionName).find(query).toArray(function (error, result) {
                 if (error) {
                     console.log("Failed to read data from the '" + collectionName + "' collection");
                     rej(error)
