@@ -47,29 +47,29 @@
     <md-app-content>
       <div style="width:60%; margin-left:20%">
         <md-card md-with-hover>
-          <md-card-header style="margin-top: 5%">
-            <div class="md-title">Best Backend Dev</div>
+          <md-card-header style="margin-top: 5%" >
+            <div class="md-title" @click="checkIfCanVote">Best Backend Dev</div>
           </md-card-header>
           <md-card-actions>
-            <md-button class="md-raised md-accent">Vote</md-button>
+            <md-button class="md-raised md-accent"  @click="checkIfCanVote()" >Vote</md-button>
           </md-card-actions>
         </md-card>
 
-        <md-card md-with-hover style="margin-top: 5%">
+        <md-card md-with-hover style="margin-top: 5%" >
           <md-card-header>
-            <div class="md-title">Best Front End Dev</div>
+            <div class="md-title" @click="checkIfCanVote()">Best Front End Dev</div>
           </md-card-header>
           <md-card-actions>
-            <md-button class="md-raised md-accent">Vote</md-button>
+            <md-button @click="checkIfCanVote()" class="md-raised md-accent">Vote</md-button>
           </md-card-actions>
         </md-card>
 
-        <md-card md-with-hover style="margin-top: 5%">
+        <md-card md-with-hover style="margin-top: 5%" @click="checkIfCanVote">
           <md-card-header>
             <div class="md-title">Best Database Management Dev</div>
           </md-card-header>
           <md-card-actions>
-            <md-button class="md-raised md-accent">Vote</md-button>
+            <md-button class="md-raised md-accent" @click="checkIfCanVote()">Vote</md-button>
           </md-card-actions>
         </md-card>
       </div>
@@ -97,7 +97,9 @@
 
 <script>
 import swal from "sweetalert";
-
+import { Person } from 'blockstack'
+import { userSession } from '../userSession'
+import router from '../router'
 export default {
   name: "Reveal",
   methods: {
@@ -106,15 +108,28 @@ export default {
         title: "Error Inelegable",
         text: "Please fill out profile in order to vote",
         icon: "warning"
+      })
+    },
+    checkIfCanVote(){
+      userSession.getFile("user.json", this.options).then(fileContents => {
+        // get the contents of the file /hello.txt
+        if(JSON.parse(fileContents).canVote !== 1){
+          this.profileSetupAlert()
+          setTimeout(()=>{
+            router.push('/userForm')
+          }, 2000)
+        }else{
+          console.log("user can vote")
+        }
       });
     }
+
   },
   data: () => ({
     showNavigation: false,
     elections: []
   }),
   mounted() {
-    //this.profileSetupAlert()
     const axios = require("axios");
 
     // Make a request for a user with a given ID
