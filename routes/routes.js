@@ -11,7 +11,7 @@ const router = express.Router();
 // Middleware to parse the body input from HTML forms
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.get('/test', voteController.storeElectionData);
+router.post('/test', voteController.storeElectionData);
 
 // exports the router module to be used in the app.js file
 module.exports = router;
