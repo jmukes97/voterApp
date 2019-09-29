@@ -1,8 +1,76 @@
 <template>
 <div style="width:80%; margin-left:10%;">
   <h1 style="margin:10px;">Best Backend Dev </h1>
-  <Canidate></Canidate>
-  <Canidate></Canidate>
+  <div>
+    <md-card md-with-hover>
+      <md-ripple>
+        <md-card-header>
+          <b-row>
+            <b-col>
+              <div class="md-title">{{objArr[0].name}}</div>
+              <div class="md-subhead" >{{objArr[0].party}}</div>
+            </b-col>
+            <b-col>
+              <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+            </b-col>
+          </b-row>
+        </md-card-header>
+      </md-ripple>
+    </md-card>
+  </div>
+
+  <div style="margin-top: 5%">
+    <md-card md-with-hover>
+      <md-ripple>
+        <md-card-header>
+          <b-row>
+            <b-col>
+              <div class="md-title">{{objArr[1].name}}</div>
+              <div class="md-subhead" >{{objArr[1].party}}</div>
+            </b-col>
+            <b-col>
+              <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+            </b-col>
+          </b-row>
+        </md-card-header>
+      </md-ripple>
+    </md-card>
+  </div>
+
+  <div style="margin-top: 5%">
+    <md-card md-with-hover>
+      <md-ripple>
+        <md-card-header>
+          <b-row>
+            <b-col>
+              <div class="md-title">{{objArr[2].name}}</div>
+              <div class="md-subhead" >{{objArr[2].party}}</div>
+            </b-col>
+            <b-col>
+              <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+            </b-col>
+          </b-row>
+        </md-card-header>
+      </md-ripple>
+    </md-card>
+  </div>
+  <div style="margin-top: 5%">
+    <md-card md-with-hover>
+      <md-ripple>
+        <md-card-header>
+          <b-row>
+            <b-col>
+              <div class="md-title">{{objArr[3].name}}</div>
+              <div class="md-subhead" >{{objArr[3].party}}</div>
+            </b-col>
+            <b-col>
+              <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+            </b-col>
+          </b-row>
+        </md-card-header>
+      </md-ripple>
+    </md-card>
+  </div>
 </div>
 </template>
 
@@ -16,15 +84,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { Person } from 'blockstack'
 import { userSession } from '../userSession'
 import BootstrapVue from 'bootstrap-vue'
-import Canidate from '@/components/Canidate.vue'
 
-Vue.use(Canidate)
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 
 export default {
   name: 'Vote',
-  components: { Vue, VueMaterial, Canidate, BootstrapVue },
+  components: { Vue, VueMaterial, BootstrapVue },
 created () {
     this.userSession = userSession
   },
@@ -35,25 +101,21 @@ created () {
     return {
       objArr:[
         {
-          "_id" : ObjectId("5d90a9237f72fc0d983f67fd"),
           "name" : "Jon",
           "party" : "Democrat",
           "totalVotes" : 1
         },
         {
-          "_id" : ObjectId("5d90a9237f72fc0d983f67fe"),
           "name" : "Joe",
           "party" : "Green Party",
           "totalVotes" : 6
         },
         {
-          "_id" : ObjectId("5d90a9237f72fc0d983f67ff"),
           "name" : "Margret",
           "party" : "Democrat",
           "totalVotes" : 1
         },
         {
-          "_id" : ObjectId("5d90a9237f72fc0d983f6800"),
           "name" : "Nessa",
           "party" : "Republican",
           "totalVotes" : 1
