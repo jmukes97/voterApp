@@ -11,7 +11,12 @@
                 <div class="md-subhead">{{objectArr[0].party}}</div>
               </b-col>
               <b-col>
-                <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+                <md-button
+                  class="md-raised md-accent"
+                  :md-ripple="false"
+                  style="float:right;"
+                  onclick="first()"
+                >Vote</md-button>
               </b-col>
             </b-row>
           </md-card-header>
@@ -29,7 +34,12 @@
                 <div class="md-subhead">{{objectArr[1].party}}</div>
               </b-col>
               <b-col>
-                <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+                <md-button
+                  class="md-raised md-accent"
+                  :md-ripple="false"
+                  style="float:right;"
+                  onclick="second()"
+                >Vote</md-button>
               </b-col>
             </b-row>
           </md-card-header>
@@ -47,7 +57,12 @@
                 <div class="md-subhead">{{objectArr[2].party}}</div>
               </b-col>
               <b-col>
-                <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+                <md-button
+                  class="md-raised md-accent"
+                  :md-ripple="false"
+                  style="float:right;"
+                  onclick="third()"
+                >Vote</md-button>
               </b-col>
             </b-row>
           </md-card-header>
@@ -64,7 +79,12 @@
                 <div class="md-subhead">{{objectArr[3].party}}</div>
               </b-col>
               <b-col>
-                <md-button class="md-raised md-accent" :md-ripple="false" style="float:right;">Vote</md-button>
+                <md-button
+                  class="md-raised md-accent"
+                  :md-ripple="false"
+                  style="float:right;"
+                  onclick="fourth()"
+                >Vote</md-button>
               </b-col>
             </b-row>
           </md-card-header>
@@ -83,6 +103,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import { Person } from "blockstack";
 import { userSession } from "../userSession";
 import BootstrapVue from "bootstrap-vue";
+import axios from "axios";
 
 Vue.use(BootstrapVue);
 Vue.use(VueMaterial);
@@ -97,18 +118,63 @@ export default {
     if (!userSession.isUserSignedIn()) {
       router.push("/");
     }
+  },
+  methods: {
+    first() {
+      axios
+        .post("https://https://34.68.131.167/test", {
+          name: this.objectArr[0].name,
+          election: this.objectArr[0].election
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
 
-    const axios = require("axios");
+    second() {
+      axios
+        .post("https://https://34.68.131.167/test", {
+          name: this.objectArr[1].name,
+          election: this.objectArr[1].election
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
 
-    // Make a request for a user with a given ID
-    axios
-      .get("https://34.68.131.167:4444/test")
-      .then(function(response) {
-        return this.objectArr;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    third() {
+      axios
+        .post("https://https://34.68.131.167/test", {
+          name: this.objectArr[2].name,
+          election: this.objectArr[2].election
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+
+    fourth() {
+      axios
+        .post("https://https://34.68.131.167/test", {
+          name: this.objectArr[2].name,
+          election: this.objectArr[2].election
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
   },
   data() {
     return {
