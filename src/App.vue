@@ -5,7 +5,19 @@
 <script>
 export default {
   name: 'App'
+  
 }
+  Vue.material.locale.dateFormat = 'dd/MM/yyyy'
+
+  // change multiple options
+  Vue.material = {
+    ...Vue.material,
+    locale: {
+      ...Vue.material.locale,
+      dateFormat: 'dd/MM/yyyy',
+      firstDayOfAWeek: 1
+    }
+  }
 </script>
 
 <style src="./assets/styles.css" lang="css"></style>
