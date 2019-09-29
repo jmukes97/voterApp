@@ -1,6 +1,9 @@
 <template>
-  <div>
-    
+  <div style="margin-left:10%; width:80%; margin-top:2.5%;">
+    <h1>Election Results</h1>
+    <ResultBox></ResultBox>
+    <ResultBox></ResultBox>
+    <md-button class="md-raised md-primary" href="./" style="float:right; margin-right:5%;">Dashboard</md-button>
   </div>
 </template>
 
@@ -20,7 +23,7 @@ Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 
 export default {
-  name: 'Vote',
+  name: 'Results',
   components: { Vue, VueMaterial, ResultBox, BootstrapVue },
 created () {
     this.userSession = userSession

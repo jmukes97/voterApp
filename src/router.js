@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import UserForm from './views/UserForm.vue'
 import Vote from './views/Vote.vue'
+import Results from './views/Results.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/vote',
       name: 'Vote',
       component: Vote
+    },
+    {
+      path: '/results',
+      name: 'Results',
+      component: Results
     }
   ]
 })

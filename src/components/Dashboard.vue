@@ -4,7 +4,6 @@
       <div>
         <img src="../assets/bars-solid.svg" height="20%" width="20%" @click="showNavigation = true" />
       </div>
-
       <span class="md-title" style="text-align:center;"></span>
     </md-app-toolbar>
 
