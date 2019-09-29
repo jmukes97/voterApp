@@ -2,9 +2,9 @@
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <md-icon>menu</md-icon>
+          <i class="fas fa-bars"></i>
         </md-button>
-        <span class="md-title">My Title</span>
+        <span class="md-title">Post-it Vote</span>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
