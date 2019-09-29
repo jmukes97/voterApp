@@ -48,28 +48,28 @@
       <div style="width:60%; margin-left:20%">
         <md-card md-with-hover>
           <md-card-header style="margin-top: 5%" >
-            <div class="md-title" @click="checkIfCanVote">Best Backend Dev</div>
+            <div class="md-title" @click="first()" >Best Backend Dev</div>
           </md-card-header>
           <md-card-actions>
-            <md-button class="md-raised md-accent"  @click="checkIfCanVote()" >Vote</md-button>
+            <md-button class="md-raised md-accent"  @click="first()" >Vote</md-button>
           </md-card-actions>
         </md-card>
 
         <md-card md-with-hover style="margin-top: 5%" >
           <md-card-header>
-            <div class="md-title" @click="checkIfCanVote()">Best Front End Dev</div>
+            <div class="md-title" @click="second()" >Best Front End Dev</div>
           </md-card-header>
           <md-card-actions>
-            <md-button @click="checkIfCanVote()" class="md-raised md-accent">Vote</md-button>
+            <md-button @click="second()"  class="md-raised md-accent">Vote</md-button>
           </md-card-actions>
         </md-card>
 
         <md-card md-with-hover style="margin-top: 5%" @click="checkIfCanVote">
           <md-card-header>
-            <div class="md-title">Best Database Management Dev</div>
+            <div @click="third()"  class="md-title">Best Database Management Dev</div>
           </md-card-header>
           <md-card-actions>
-            <md-button class="md-raised md-accent" @click="checkIfCanVote()">Vote</md-button>
+            <md-button class="md-raised md-accent" @click="third()">Vote</md-button>
           </md-card-actions>
         </md-card>
       </div>
@@ -103,6 +103,21 @@ import router from '../router'
 export default {
   name: "Reveal",
   methods: {
+    first(){
+      this.votePage = "vote"
+      this.checkIfCanVote()
+      router.push(this.votePage)
+    },
+    second(){
+      this.votePage = "vote2"
+      this.checkIfCanVote()
+      router.push(this.votePage)
+    },
+    third(){
+      this.votePage = "vote3"
+      this.checkIfCanVote()
+      router.push(this.votePage)
+    },
     profileSetupAlert() {
       swal({
         title: "Error Inelegable",
@@ -113,36 +128,24 @@ export default {
     checkIfCanVote(){
       userSession.getFile("user.json", this.options).then(fileContents => {
         // get the contents of the file /hello.txt
+        console.log(JSON.parse(fileContents).canVote)
         if(JSON.parse(fileContents).canVote !== 1){
           this.profileSetupAlert()
           setTimeout(()=>{
             router.push('/userForm')
           }, 2000)
-        }else{
-          console.log("user can vote")
         }
-      });
+      })
     }
 
   },
   data: () => ({
     showNavigation: false,
-    elections: []
+    elections: [],
+    votePage: ''
   }),
   mounted() {
-    const axios = require("axios");
 
-    // Make a request for a user with a given ID
-    axios
-      .get("http://34.68.131.167:4444/test")
-      .then(response => {
-        this.elections = response.data;
-        console.log(this.elections);
-      })
-      .catch(function(error) {
-        // handle error
-        console.log(error);
-      });
   }
 };
 </script>
