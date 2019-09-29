@@ -41,8 +41,15 @@
       </md-app-drawer>
     <md-app-content>
       <div style="width:60%; margin-left:20%">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut volutpat velit, at porta turpis. Nullam vel facilisis erat. Cras fringilla risus erat, at fermentum ante accumsan eu. Maecenas massa dui, tincidunt a risus ac, interdum tincidunt ligula. Quisque ullamcorper dapibus tortor et suscipit. Nulla dictum nibh ut dapibus malesuada. Nam pulvinar mi id scelerisque hendrerit. Nullam ornare leo turpis. Curabitur venenatis rutrum nulla, quis accumsan purus rutrum aliquam. In non sem quis odio fermentum varius. Aliquam hendrerit tortor eu quam tempor interdum. Donec tincidunt vehicula dapibus.</p>
-        <Election></Election>
+        <md-card md-with-hover>
+          <md-card-header>
+            <div class="md-title">[Election name]</div>
+            <div class="md-subtitle">[Election Information]</div>
+          </md-card-header>
+          <md-card-actions>
+            <md-button class="md-accent md-raised">Vote</md-button>
+          </md-card-actions>
+        </md-card>
       </div>      
     </md-app-content>
   </md-app>
@@ -66,10 +73,26 @@
 </style>
 
 <script>
+import swal from 'sweetalert';
+
 export default {
   name: 'Reveal',
+  methods: {
+  profileSetupAlert() {
+  swal({
+      title: "Error Inelegable",
+      text: "Please fill out profile in order to vote",
+      icon: "warning"
+  })
+  }
+ },
   data: () => ({
     showNavigation: false
-  })
-}
+  }),
+  mounted() {
+    //this.profileSetupAlert()
+  }
+} 
+
+
 </script>

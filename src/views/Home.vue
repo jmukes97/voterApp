@@ -2,6 +2,7 @@
   <div>
     <landing v-if="! userSession.isUserSignedIn()"></landing>
     <dashboard v-if="user" :user="user"></dashboard>
+    <Election></Election>
 
   </div>
 </template>
@@ -11,11 +12,12 @@ import Landing from '@/components/Landing.vue'
 import Dashboard from '@/components/Dashboard.vue'
 import { Person } from 'blockstack'
 import { userSession } from '../userSession'
-import Canidate from '@/components/Election.vue'
+import Election from '@/components/Election.vue'
+
 
 export default {
   name: 'Home',
-  components: { Landing, Dashboard },
+  components: { Landing, Dashboard, Election },
   created () {
     this.userSession = userSession
   },
