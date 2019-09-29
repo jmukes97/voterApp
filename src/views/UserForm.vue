@@ -1,5 +1,6 @@
-<template style="background-image:/assets/">
-  <b-container>
+<template>
+<div>
+  <b-container class="verticalCenter">
     <b-row>
       <b-col cols="4">
         <md-avatar class="center" style="width:50%; height:auto; border-radius:50%;">
@@ -8,8 +9,10 @@
       </b-col>
       
       <b-col cols="8">
+        <div class="md-title" style="margin-bottom:10px;">Edit your profile</div>
         <b-row>
         <b-col>
+          
           <md-field>
             <md-select v-model="State" name="State" id="State" placeholder="State">
               <md-option value="AL">AL</md-option>
@@ -116,7 +119,7 @@
     </b-row>
 
   </b-container>
-
+</div>
 </template>
 
 <script>
@@ -160,6 +163,14 @@ export default {
       top: 50%;
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
+    }
+
+    .verticalCenter {
+      position: absolute;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      margin-left: 5%;
     }
 
     .horCenter {
