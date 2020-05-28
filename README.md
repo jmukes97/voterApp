@@ -24,4 +24,3 @@ Voting system replacement, based on blockchain
 
 7. Repeat steps 3 - 6 every time you want to change something
 
-Note: If you get a conflict in step 4, talk to Joe or Jon
